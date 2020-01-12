@@ -41,6 +41,7 @@ module.exports = {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
         target: 'http://47.96.161.119',
+        //target: 'http://localhost:9090',
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: '/blockchain-cert-server'

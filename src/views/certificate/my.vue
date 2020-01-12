@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <cert-list mode="query"></cert-list>
+        <cert-list mode="my"></cert-list>
     </div>
 </template>
 

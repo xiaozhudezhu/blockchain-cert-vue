@@ -45,7 +45,7 @@
 import { validPhone } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setCurrentUser } from '@/utils/auth'
 import { MessageBox, Message } from 'element-ui'
 import request from '@/utils/request'
 const TIME_COUNT = 60; //更改倒计时时间
@@ -130,6 +130,7 @@ export default {
               this.loading = false
               if(res.loginToken) {
                 setToken(res.loginToken)
+                setCurrentUser(res.user)
                 this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               }
             })
@@ -151,15 +152,15 @@ export default {
       }, {})
     },
     send() {
-      console.log(this.$refs.phone.elFormItem.validateState)
-      if(this.$refs.phone.elFormItem.validateState != 'success')
+      if(!validPhone(this.loginForm.phone)) {
+        this.$message.warning('手机号格式错误')
         return false
+      }
+        
       request.post('/sendVerifyCode', { phone: this.loginForm.phone }).then(res => {
         if(res.sessionId && res.status == 'success') {
           this.sessionId = res.sessionId;
-          Message({
-            message: '验证码发送成功'
-          })
+          this.$message.success('验证码发送成功')
         }
         
       });

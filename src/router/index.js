@@ -73,10 +73,9 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
     children: [
       {
-        path: 'dashboard',
+        path: 'default',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'dashboard', affix: true }
@@ -84,50 +83,37 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/documentation',
+    path: '/certificate',
     component: Layout,
     children: [
       {
-        path: 'upload-excel',
-        component: () => import('@/views/excel/upload-excel'),
-        name: 'UploadExcel',
+        path: 'batch-import',
+        component: () => import('@/views/certificate/batch-import'),
+        name: 'batch-import',
         meta: { title: '证书上传', icon: 'documentation' }
       }
     ]
   },
   {
-    path: '/certificate/query',
+    path: '/certificate',
     component: Layout,
     children: [
       {
         path: 'query',
         component: () => import('@/views/certificate/query'),
         name: 'certificateQuery',
-        meta: { title: '证书查询', icon: 'documentation' }
+        meta: { title: '证书查询', icon: 'documentation', noCache: true }
       }
     ]
   },
   {
-    path: '/complex-table',
+    path: '/certificate',
     component: Layout,
     children: [
       {
-        path: 'query',
-        component: () => import('@/views/table/complex-table'),
-        name: 'complex-table',
-        meta: { title: '表格', icon: 'documentation' }
-      }
-    ]
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
+        path: 'my',
+        component: () => import('@/views/certificate/my'),
+        name: 'certificateMy',
         meta: { title: '我的证书', icon: 'documentation' }
       }
     ]

@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Vue Element Admin',
+  title: '区块链证书',
 
   /**
    * @type {boolean} true | false
